@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "tmk_core/common/eeconfig.h"  // for EECONFIG_SIZE
+#include "eeconfig.h"  // for EECONFIG_SIZE
 
 // Keyboard level code can change where VIA stores the magic.
 // The magic is the build date YYMMDD encoded as BCD in 3 bytes,
@@ -78,6 +78,22 @@ enum via_command_id {
     id_dynamic_keymap_get_layer_count       = 0x11,
     id_dynamic_keymap_get_buffer            = 0x12,
     id_dynamic_keymap_set_buffer            = 0x13,
+    id_qmk_rc_olde_off                      = 0x15,
+    id_qmk_rc_olde_on                       = 0x16,
+    id_qmk_rc_olde_write                    = 0x17,
+    id_qmk_rc_olde_clear                    = 0x18,
+    id_qmk_rc_rgblight_off                  = 0x19,
+    id_qmk_rc_rgblight_on                   = 0x1a,
+    id_qmk_rc_rgblight_setrgb_range         = 0x1b,
+    id_qmk_rc_rgb_matrix_off                = 0x1c,
+    id_qmk_rc_rgb_matrix_on                 = 0x1d,
+    id_qmk_rc_rgb_matrix_setrgb_range       = 0x1e,
+    id_qmk_rc_layer_on                      = 0x1f,
+    id_qmk_rc_layer_off                     = 0x20,
+    id_qmk_rc_layer_clear                   = 0x21,
+    id_qmk_rc_layer_move                    = 0x22,
+    id_qmk_rc_sned_string                   = 0x23,
+    id_qmk_is_olde_on                       = 0x24,
     id_unhandled                            = 0xFF,
 };
 
@@ -152,12 +168,8 @@ bool via_eeprom_is_valid(void);
 // Keyboard level code (eg. via_init_kb()) should not call this
 void via_eeprom_set_valid(bool valid);
 
-// Flag QMK and VIA/keyboard level EEPROM as invalid.
-// Used in bootmagic_lite() and VIA command handler.
-// Keyboard level code should not need to call this.
-void via_eeprom_reset(void);
-
 // Called by QMK core to initialize dynamic keymaps etc.
+void eeconfig_init_via(void);
 void via_init(void);
 
 // Used by VIA to store and retrieve the layout options.
