@@ -138,32 +138,61 @@ void matrix_scan_user(void) {
     }
 }
 
+bool is_hold = false;
+
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) { /* First encoder */
+    if (index == 0) {
         if (clockwise) {
             encoder1_cw.pressed = true;
             encoder1_cw.time = (timer_read() | 1);
-            action_exec(encoder1_cw);
+            if(is_hold){
+              if (get_highest_layer(layer_state|default_layer_state) == 15 ) {
+                layer_clear();
+              } else {
+                layer_move(get_highest_layer(layer_state)+1); 
+              }
+            } else {
+              action_exec(encoder1_cw);
+            }
         } else {
             encoder1_ccw.pressed = true;
             encoder1_ccw.time = (timer_read() | 1);
-            action_exec(encoder1_ccw);
+            if(is_hold){
+              if (get_highest_layer(layer_state|default_layer_state) == 0 ) {
+                layer_move(15);
+              } else {
+                layer_move(get_highest_layer(layer_state)-1); 
+              }
+            } else {
+              action_exec(encoder1_ccw);
+            }
         }
     }
 
     return true;
 }
 
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
+  static uint16_t pressed_time = 0;
+
+  switch (keycode) {  
     case KC_F24:
-      if (record->event.pressed) {
-        if (get_highest_layer(layer_state|default_layer_state) == 15 ) {
-          layer_clear();
-        } else {
-          layer_invert(get_highest_layer(layer_state)+1); 
+      if (record->event.pressed) {    
+        pressed_time = record->event.time;
+        if(!is_hold){
+          if (get_highest_layer(layer_state|default_layer_state) == 15 ) {
+            layer_clear();
+          } else {
+            layer_move(get_highest_layer(layer_state)+1); 
+          }
         }
-      } 
+        is_hold = false;
+      } else {
+          if((record->event.time - pressed_time) > TAPPING_TERM) {
+            is_hold = true;
+          }
+      }
       return false;
     default:
       return true;
