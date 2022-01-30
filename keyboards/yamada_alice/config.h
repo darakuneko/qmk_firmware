@@ -75,10 +75,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_DISABLE_TIMEOUT 120000
 #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_BREATHING
 #define RGB_DISABLE_WHEN_USB_SUSPENDED true
-#define RGB_MATRIX_HUE_STEP 8
-#define RGB_MATRIX_SAT_STEP 8
-#define RGB_MATRIX_VAL_STEP 8
-#define RGB_MATRIX_SPD_STEP 8
+#define RGB_MATRIX_HUE_STEP 4
+#define RGB_MATRIX_SAT_STEP 4
+#define RGB_MATRIX_VAL_STEP 4
+#define RGB_MATRIX_SPD_STEP 4
 #define RGB_MATRIX_KEYPRESSES
 #define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
