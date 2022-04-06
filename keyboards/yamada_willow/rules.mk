@@ -23,8 +23,9 @@ BLUETOOTH_ENABLE = no       # Enable Bluetooth
 AUDIO_ENABLE = no           # Audio output
 VIA_ENABLE = yes
 ENCODER_ENABLE = yes
-RGB_MATRIX_ENABLE = yes
 
 SRC += qmk_rc.c
 LTO_ENABLE=yes	
 DEBOUNCE_TYPE = sym_eager_pk
+
+RGB_MATRIX_CUSTOM_KB = yes
