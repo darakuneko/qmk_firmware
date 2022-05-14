@@ -26,3 +26,5 @@ AUDIO_ENABLE = no           # Audio output
 VIA_ENABLE = yes
 SRC += qmk_rc.c
 LTO_ENABLE = yes            # Link Time Optimization (reduce firmware size)
+DEBOUNCE_TYPE = sym_eager_pk
+DYNAMIC_TAPPING_TERM_ENABLE = yes
