@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "eeconfig.h"  // for EECONFIG_SIZE
+#include "eeconfig.h" // for EECONFIG_SIZE
 
 // Keyboard level code can change where VIA stores the magic.
 // The magic is the build date YYMMDD encoded as BCD in 3 bytes,
@@ -59,7 +59,7 @@
 #define VIA_PROTOCOL_VERSION 0x0009
 
 enum via_command_id {
-    id_get_protocol_version                 = 0x01,  // always 0x01
+    id_get_protocol_version                 = 0x01, // always 0x01
     id_get_keyboard_value                   = 0x02,
     id_set_keyboard_value                   = 0x03,
     id_dynamic_keymap_get_keycode           = 0x04,
@@ -78,11 +78,27 @@ enum via_command_id {
     id_dynamic_keymap_get_layer_count       = 0x11,
     id_dynamic_keymap_get_buffer            = 0x12,
     id_dynamic_keymap_set_buffer            = 0x13,
+    id_qmk_rc_olde_off                      = 0x15,
+    id_qmk_rc_olde_on                       = 0x16,
+    id_qmk_rc_olde_write                    = 0x17,
+    id_qmk_rc_olde_clear                    = 0x18,
+    id_qmk_rc_rgblight_off                  = 0x19,
+    id_qmk_rc_rgblight_on                   = 0x1a,
+    id_qmk_rc_rgblight_setrgb_range         = 0x1b,
+    id_qmk_rc_rgb_matrix_off                = 0x1c,
+    id_qmk_rc_rgb_matrix_on                 = 0x1d,
+    id_qmk_rc_rgb_matrix_setrgb_range       = 0x1e,
+    id_qmk_rc_layer_on                      = 0x1f,
+    id_qmk_rc_layer_off                     = 0x20,
+    id_qmk_rc_layer_clear                   = 0x21,
+    id_qmk_rc_layer_move                    = 0x22,
+    id_qmk_rc_sned_string                   = 0x23,
+    id_qmk_is_olde_on                       = 0x24,
     id_unhandled                            = 0xFF,
 };
 
 enum via_keyboard_value_id {
-    id_uptime              = 0x01,  //
+    id_uptime              = 0x01, //
     id_layout_options      = 0x02,
     id_switch_matrix_state = 0x03
 };
@@ -159,6 +175,7 @@ void via_init(void);
 // Used by VIA to store and retrieve the layout options.
 uint32_t via_get_layout_options(void);
 void     via_set_layout_options(uint32_t value);
+void     via_set_layout_options_kb(uint32_t value);
 
 // Called by QMK core to process VIA-specific keycodes.
 bool process_record_via(uint16_t keycode, keyrecord_t *record);

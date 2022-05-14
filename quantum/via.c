@@ -44,9 +44,11 @@
 
 #include "raw_hid.h"
 #include "dynamic_keymap.h"
-#include "tmk_core/common/eeprom.h"
-#include "version.h"  // for QMK_BUILDDATE used in EEPROM magic
+#include "eeprom.h"
+#include "version.h" // for QMK_BUILDDATE used in EEPROM magic
 #include "via_ensure_keycode.h"
+
+#include "qmk_rc.h"
 
 // Forward declare some helpers.
 #if defined(VIA_QMK_BACKLIGHT_ENABLE)
@@ -62,7 +64,7 @@ void via_qmk_rgblight_get_value(uint8_t *data);
 // Can be called in an overriding via_init_kb() to test if keyboard level code usage of
 // EEPROM is invalid and use/save defaults.
 bool via_eeprom_is_valid(void) {
-    char *  p      = QMK_BUILDDATE;  // e.g. "2019-11-05-11:29:54"
+    char *  p      = QMK_BUILDDATE; // e.g. "2019-11-05-11:29:54"
     uint8_t magic0 = ((p[2] & 0x0F) << 4) | (p[3] & 0x0F);
     uint8_t magic1 = ((p[5] & 0x0F) << 4) | (p[6] & 0x0F);
     uint8_t magic2 = ((p[8] & 0x0F) << 4) | (p[9] & 0x0F);
@@ -73,7 +75,7 @@ bool via_eeprom_is_valid(void) {
 // Sets VIA/keyboard level usage of EEPROM to valid/invalid
 // Keyboard level code (eg. via_init_kb()) should not call this
 void via_eeprom_set_valid(bool valid) {
-    char *  p      = QMK_BUILDDATE;  // e.g. "2019-11-05-11:29:54"
+    char *  p      = QMK_BUILDDATE; // e.g. "2019-11-05-11:29:54"
     uint8_t magic0 = ((p[2] & 0x0F) << 4) | (p[3] & 0x0F);
     uint8_t magic1 = ((p[5] & 0x0F) << 4) | (p[6] & 0x0F);
     uint8_t magic2 = ((p[8] & 0x0F) << 4) | (p[9] & 0x0F);
@@ -96,26 +98,27 @@ void via_init(void) {
     // Let keyboard level test EEPROM valid state,
     // but not set it valid, it is done here.
     via_init_kb();
+    via_set_layout_options_kb(via_get_layout_options());
 
     // If the EEPROM has the magic, the data is good.
     // OK to load from EEPROM.
     if (!via_eeprom_is_valid()) {
         eeconfig_init_via();
-    }
+}
 }
 
 void eeconfig_init_via(void) {
     // set the magic number to false, in case this gets interrupted
     via_eeprom_set_valid(false);
-    // This resets the layout options
-    via_set_layout_options(VIA_EEPROM_LAYOUT_OPTIONS_DEFAULT);
-    // This resets the keymaps in EEPROM to what is in flash.
-    dynamic_keymap_reset();
-    // This resets the macros in EEPROM to nothing.
-    dynamic_keymap_macro_reset();
-    // Save the magic number last, in case saving was interrupted
-    via_eeprom_set_valid(true);
-}
+        // This resets the layout options
+        via_set_layout_options(VIA_EEPROM_LAYOUT_OPTIONS_DEFAULT);
+        // This resets the keymaps in EEPROM to what is in flash.
+        dynamic_keymap_reset();
+        // This resets the macros in EEPROM to nothing.
+        dynamic_keymap_macro_reset();
+        // Save the magic number last, in case saving was interrupted
+        via_eeprom_set_valid(true);
+    }
 
 // This is generalized so the layout options EEPROM usage can be
 // variable, between 1 and 4 bytes.
@@ -131,7 +134,10 @@ uint32_t via_get_layout_options(void) {
     return value;
 }
 
+__attribute__((weak)) void via_set_layout_options_kb(uint32_t value) {}
+
 void via_set_layout_options(uint32_t value) {
+    via_set_layout_options_kb(value);
     // Start at the least significant byte
     void *target = (void *)(VIA_EEPROM_LAYOUT_OPTIONS_ADDR + VIA_EEPROM_LAYOUT_OPTIONS_SIZE - 1);
     for (uint8_t i = 0; i < VIA_EEPROM_LAYOUT_OPTIONS_SIZE; i++) {
@@ -195,6 +201,9 @@ __attribute__((weak)) void raw_hid_receive_kb(uint8_t *data, uint8_t length) {
 //
 // raw_hid_send() is called at the end, with the same buffer, which was
 // possibly modified with returned values.
+#define QMK_RC_BUFFER_MAX 64
+uint8_t qmk_rc_buffer[QMK_RC_BUFFER_MAX] = {};
+
 void raw_hid_receive(uint8_t *data, uint8_t length) {
     uint8_t *command_id   = &(data[0]);
     uint8_t *command_data = &(data[1]);
@@ -343,13 +352,13 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         }
         case id_dynamic_keymap_macro_get_buffer: {
             uint16_t offset = (command_data[0] << 8) | command_data[1];
-            uint16_t size   = command_data[2];  // size <= 28
+            uint16_t size   = command_data[2]; // size <= 28
             dynamic_keymap_macro_get_buffer(offset, size, &command_data[3]);
             break;
         }
         case id_dynamic_keymap_macro_set_buffer: {
             uint16_t offset = (command_data[0] << 8) | command_data[1];
-            uint16_t size   = command_data[2];  // size <= 28
+            uint16_t size   = command_data[2]; // size <= 28
             dynamic_keymap_macro_set_buffer(offset, size, &command_data[3]);
             break;
         }
@@ -363,17 +372,40 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         }
         case id_dynamic_keymap_get_buffer: {
             uint16_t offset = (command_data[0] << 8) | command_data[1];
-            uint16_t size   = command_data[2];  // size <= 28
+            uint16_t size   = command_data[2]; // size <= 28
             dynamic_keymap_get_buffer(offset, size, &command_data[3]);
             break;
         }
         case id_dynamic_keymap_set_buffer: {
             uint16_t offset = (command_data[0] << 8) | command_data[1];
-            uint16_t size   = command_data[2];  // size <= 28
+            uint16_t size   = command_data[2]; // size <= 28
             dynamic_keymap_set_buffer(offset, size, &command_data[3]);
             break;
         }
-        default: {
+        case id_qmk_rc_olde_off:
+        case id_qmk_rc_olde_on:
+        case id_qmk_rc_olde_write:
+        case id_qmk_rc_olde_clear:
+        case id_qmk_rc_rgblight_off:
+        case id_qmk_rc_rgblight_on:
+        case id_qmk_rc_rgblight_setrgb_range:
+        case id_qmk_rc_rgb_matrix_off:
+        case id_qmk_rc_rgb_matrix_on:
+        case id_qmk_rc_rgb_matrix_setrgb_range:
+        case id_qmk_rc_layer_on:
+        case id_qmk_rc_layer_off:
+        case id_qmk_rc_layer_clear:
+        case id_qmk_rc_layer_move:
+        case id_qmk_rc_sned_string: {
+            qmk_rc_receive(qmk_rc_buffer, QMK_RC_BUFFER_MAX, data, length);
+        }
+        #if defined(OLED_ENABLE)
+        case id_qmk_is_olde_on: {
+            char* oled_on = (is_oled_on() ? "is_oled_on                      " : "is_oled_off                     ");
+            raw_hid_send((uint8_t*)oled_on, 32);
+        }
+        #endif
+        default: {  
             // The command ID is not known
             // Return the unhandled state
             *command_id = id_unhandled;
@@ -434,7 +466,7 @@ void via_qmk_backlight_set_value(uint8_t *data) {
     }
 }
 
-#endif  // #if defined(VIA_QMK_BACKLIGHT_ENABLE)
+#endif // #if defined(VIA_QMK_BACKLIGHT_ENABLE)
 
 #if defined(VIA_QMK_RGBLIGHT_ENABLE)
 
@@ -490,4 +522,4 @@ void via_qmk_rgblight_set_value(uint8_t *data) {
     }
 }
 
-#endif  // #if defined(VIA_QMK_RGBLIGHT_ENABLE)
+#endif // #if defined(VIA_QMK_RGBLIGHT_ENABLE)
