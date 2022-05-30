@@ -1,10 +1,11 @@
 # gum-num
 
-![gum-num](imgur.com image replace me!)
+![IMG_2031 (1)](https://user-images.githubusercontent.com/5214078/170985524-fc0e367b-d079-44a1-a9b6-1b177349779b.jpeg)
 
 *A short description of the keyboard/project*
 
-* Keyboard Maintainer: [daraku-neko](https://github.com/yourusername)
+* Keyboard Maintainer: [daraku-neko](https://github.com/dar![Uploading IMG_2031 (1).jpeg…]()
+akuneko)
 * Hardware Supported: *The PCBs, controllers supported*
 * Hardware Availability: *Links to where you can find this hardware*
 
