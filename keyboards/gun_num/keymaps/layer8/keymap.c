@@ -13,65 +13,65 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
         KC_1, KC_2, KC_3, KC_4, KC_5,
         KC_6, KC_7, KC_8, KC_9, KC_0,
-        KC_BSPC, KC_QUOT, KC_SPC, KC_COMMA, KC_DOT,
-        KC_F24, KC_ESC, 
-        KC_ENT, C(KC_C), C(KC_Z), C(KC_V), C(KC_Y),
+        QK_BOOT, KC_QUOT, KC_COMMA, KC_SPC, KC_BSPC,
+        KC_ESC, KC_ENT, 
+        SFT_T(KC_A), C(KC_C), C(KC_Z), C(KC_V), C(KC_Y),
         C(KC_PMNS), C(KC_PPLS)
     ),
     [1] = LAYOUT(
-        KC_A, KC_2, KC_3, KC_4, KC_5,
+        KC_1, KC_2, KC_3, KC_4, KC_5,
         KC_6, KC_7, KC_8, KC_9, KC_0,
-        KC_A, KC_B, KC_C, KC_D, KC_E,
-        KC_F24, KC_ENT, 
-        KC_BTN1, KC_MS_UP, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,
+        KC_DOT, KC_QUOT, KC_COMMA, KC_SPC, KC_BSPC,
+        KC_BTN2, KC_BTN1, 
+        KC_F24, KC_MS_UP, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT,
         RGB_RMOD, RGB_MOD
     ),
     [2] = LAYOUT(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_F24,KC_NO, 
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, 
+        KC_F24,KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO
     ),
     [3] = LAYOUT(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_F24,KC_NO, 
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, 
+        KC_F24,KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO
     ),
     [4] = LAYOUT(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_F24,KC_NO, 
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, 
+        KC_F24,KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO
     ),
     [5] = LAYOUT(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_F24,KC_NO, 
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, 
+        KC_F24,KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO
     ),
     [6] = LAYOUT(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-        KC_F24,KC_NO, 
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, 
+        KC_F24,KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO
     ),
     [7] = LAYOUT(
         RGB_VAI,  RGB_SAI,  RGB_HUI, RGB_SPI, RGB_TOG, 
         RGB_VAD,  RGB_SAD,  RGB_HUD, RGB_SPD, QK_BOOT,
         DT_PRNT,  DT_UP,    DT_DOWN, KC_NO,   KC_NO,
-        KC_F24,KC_NO, 
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, 
+        KC_F24,KC_NO, KC_NO, KC_NO, KC_NO,
         RGB_RMOD, RGB_MOD
     )
 };
