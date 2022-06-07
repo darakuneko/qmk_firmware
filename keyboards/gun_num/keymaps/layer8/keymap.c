@@ -15,7 +15,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_6, KC_7, KC_8, KC_9, KC_0,
         QK_BOOT, KC_QUOT, KC_COMMA, KC_SPC, KC_BSPC,
         KC_ESC, KC_ENT, 
-        SFT_T(KC_A), C(KC_C), C(KC_Z), C(KC_V), C(KC_Y),
+        KC_F24, C(KC_C), C(KC_Z), C(KC_V), C(KC_Y),
         C(KC_PMNS), C(KC_PPLS)
     ),
     [1] = LAYOUT(
@@ -187,16 +187,16 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     } else if (current_layer == 2)  {
       hsv.h = 85; //GREEN
     } else if (current_layer == 3)  {
-      hsv.h = 0; //PURPLE
+      hsv.h = 0; //RED
     } else if (current_layer == 4)  {
       hsv.h = 170; //BLUE
     } else if (current_layer == 5)  {
-      hsv.h = 64; //CHARTREUSE
-    } else if (current_layer == 6)  {
       hsv.h = 11; //CORAL
       hsv.s = 176;
+    } else if (current_layer == 6)  {
+      hsv.h = 64; //CHARTREUSE
     } else if (current_layer == 7)  {
-      hsv.h = 36; //GOLD
+      hsv.h = 43; //YELLOW
     } else {
       hsv.h = 213; //MAGENTA
     }
