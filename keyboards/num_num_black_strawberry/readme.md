@@ -1,6 +1,6 @@
-# num_num_strawberry
+# Num-Num Black Strawberry!!
 
-![num_num_strawberry](imgur.com image replace me!)
+![num_num_strawberry](https://user-images.githubusercontent.com/5214078/188372067-4de8309d-0663-4d52-98d0-5e9a5562305f.jpeg)
 
 *A short description of the keyboard/project*
 
