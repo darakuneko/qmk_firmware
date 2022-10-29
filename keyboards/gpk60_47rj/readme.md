@@ -1,4 +1,4 @@
-# gpk60_47rj
+# GPK60 47RJ
 
 ![IMG_6674](https://user-images.githubusercontent.com/5214078/198825602-027ff9ff-4d31-4765-94ab-bc24f817a8c5.png)
 
