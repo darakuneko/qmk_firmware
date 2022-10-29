@@ -18,10 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID    0xFEED
-#define PRODUCT_ID   0x1427
+#define PRODUCT_ID   0x1428
 #define DEVICE_VER   0x0001
 #define MANUFACTURER Daraku-Neko
-#define PRODUCT      GPK60-47VC1RE
+#define PRODUCT      GPK60-47RJ
 
 #define RGB_DI_PIN GP0
 #define RGBLED_NUM 59

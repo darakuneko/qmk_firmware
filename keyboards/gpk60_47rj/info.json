@@ -29,7 +29,7 @@
     },
     "double_tap_shift_turns_on": true,
     "dynamic_keymap": {
-      "layer_count": 7
+      "layer_count": 6
     },    
     "debounce": 5,
     "url": ""
