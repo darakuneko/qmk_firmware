@@ -1,6 +1,6 @@
 # gpk60_47rj
 
-![gpk60_47rj](imgur.com image replace me!)
+![IMG_6674](https://user-images.githubusercontent.com/5214078/198825602-027ff9ff-4d31-4765-94ab-bc24f817a8c5.png)
 
 *A short description of the keyboard/project*
 
