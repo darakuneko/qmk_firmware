@@ -38,13 +38,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
 
-#define EEPROM_I2C_24LC256
-//#define I2C1_CLOCK_SPEED 400000
-//#define I2C1_DUTY_CYCLE FAST_DUTY_CYCLE_2
-
 #define EARLY_INIT_PERFORM_BOOTLOADER_JUMP TRUE
-
-#define STM32_HSECLK 8000000
 
 // RGB Matrix defines
 #define DRIVER_ADDR_1 0b0110000
