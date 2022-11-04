@@ -1,6 +1,6 @@
 # yamada65_pro
 
-![yamada65pro](imgur.com image replace me!)
+![IMG_6888](https://user-images.githubusercontent.com/5214078/199902958-d12109c8-1160-441a-a613-66cc3d97a760.jpeg)
 
 *A short description of the keyboard/project*
 
