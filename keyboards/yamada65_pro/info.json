@@ -27,9 +27,12 @@
       "cols": 15,
       "rows": 5
   },
-  "double_tap_shift_turns_on": true,
+  "caps_word": {
+    "enabled": true,
+    "double_tap_shift_turns_on": true
+  },
   "dynamic_keymap": {
-    "layer_count": 7
+    "layer_count": 5
   },    
   "debounce": 5,
   "url": ""
