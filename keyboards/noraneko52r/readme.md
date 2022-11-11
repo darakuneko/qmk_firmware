@@ -1,6 +1,6 @@
 # Noraneko52R
 
-![noraneko52r](https://user-images.githubusercontent.com/5214078/194799234-a3ef62dd-bfc3-4b87-ab35-2c0d2923196e.jpeg)
+![IMG_6999](https://user-images.githubusercontent.com/5214078/201306587-273d2fc8-8ddb-4751-b1eb-f60087890764.jpeg)
 
 *A short description of the keyboard/project*
 
