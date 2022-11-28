@@ -1,7 +1,6 @@
 # Yamada Emiko
-
-![983a3920-7595-4874-b0a1-a4ca8a2035b9](https://user-images.githubusercontent.com/5214078/203681390-cac326d6-2b0c-44c5-aff9-e122108e6be4.jpeg)
-![IMG_7601](https://user-images.githubusercontent.com/5214078/203681314-980abe51-8cf9-4703-9895-4d8083109060.jpeg)
+![IMG_7724](https://user-images.githubusercontent.com/5214078/204239509-e838b31b-0883-468e-9ef0-61ded5ae5e8d.jpeg)
+![IMG_7614](https://user-images.githubusercontent.com/5214078/204239388-ec9954e8-2e52-4803-9048-538132439766.jpeg)
 
 *A short description of the keyboard/project*
 
