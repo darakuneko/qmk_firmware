@@ -18,7 +18,6 @@
 #include "i2c_master.h"
 #include "pointing_device.h"
 #include "iqs5xx.h"
-#include "host.h"
 
 static void dummy_func(uint8_t btn){};
 void (*pointing_device_set_button)(uint8_t btn) = dummy_func;
