@@ -65,6 +65,12 @@ keyevent_t get_o_2 = {
     .pressed = false
 };
 
+keyevent_t get_t_3 = {
+    .key = (keypos_t){.row = 7, .col = 2},
+    .pressed = false
+};
+
+
 void gesture_press_key(keyevent_t k) {
     k.pressed = true;
     k.time = (timer_read() | 1);
@@ -112,6 +118,9 @@ void matrix_scan_kb() {
         static iqs5xx_gesture_data_t iqs5xx_gesture_data;
         bool send_flag = process_iqs5xx(&iqs5xx_data, &iqs5xx_processed_data, &mouse_rep, &iqs5xx_gesture_data);
         bool is_passed_ges_timer = timer_elapsed32(ges_time) > GES_TIME_MS;
+        if(iqs5xx_processed_data.tap_cnt == 3) {
+            gesture_press_key(get_t_3);
+        } 
         switch (iqs5xx_gesture_data.multi.gesture_state) {
             case GESTURE_SWIPE_U:
                 if(iqs5xx_data.finger_cnt == 2){
